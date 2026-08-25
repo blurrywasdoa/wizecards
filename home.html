@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>WIZE CARDS - Home</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    margin:0;
+    background:#08080d;
+    color:white;
+}
+
+nav{
+    height:75px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 25px;
+    border-bottom:1px solid #24202d;
+}
+
+.logo{
+    color:#27dfff;
+    font-size:20px;
+    font-weight:bold;
+}
+
+.nav-buttons{
+    display:flex;
+    gap:10px;
+}
+
+button{
+    border:1px solid #312b45;
+    background:#111017;
+    color:white;
+    padding:12px 18px;
+    border-radius:12px;
+    cursor:pointer;
+}
+
+.primary{
+    background:#16d8ee;
+    color:white;
+    border:0;
+}
+
+.hero{
+    max-width:850px;
+    margin:auto;
+    padding:90px 25px;
+    text-align:center;
+}
+
+.badge{
+    display:inline-block;
+    padding:10px 18px;
+    border:1px solid #39314d;
+    border-radius:30px;
+    color:#ddd;
+}
+
+h1{
+    font-size:55px;
+    margin:35px 0 20px;
+    background:linear-gradient(90deg,#794cff,#18dfff);
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+.hero p{
+    color:#aaa;
+    font-size:19px;
+    line-height:1.7;
+}
+
+.actions{
+    margin-top:35px;
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.actions button{
+    min-width:190px;
+    padding:17px;
+}
+
+.features{
+    max-width:900px;
+    margin:auto;
+    padding:20px;
+}
+
+.feature{
+    background:#101016;
+    border:1px solid #272335;
+    border-radius:20px;
+    padding:35px;
+    text-align:center;
+    margin-bottom:20px;
+}
+
+.feature h2{
+    color:#fff;
+}
+
+.feature p{
+    color:#999;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+
+    <div class="logo">▣ WIZE CARDS</div>
+
+    <div class="nav-buttons">
+
+        <button class="primary" onclick="location.href='signup.html'">
+            Get Started
+        </button>
+    </div>
+
+</nav>
+
+<section class="hero">
+
+    <div class="badge">✨ Your Trusted Card Marketplace</div>
+
+    <h1>
+        Premium Cards<br>
+        At Your Fingertips
+    </h1>
+
+    <p>
+        Explore our premium card marketplace
+        with a modern, secure and easy-to-use experience.
+    </p>
+
+    <div class="actions">
+
+        <button class="primary"
+                onclick="location.href='signup.html'">
+            Start Shopping Now →
+        </button>
+
+        <button onclick="location.href='about.html'">
+            Learn More
+        </button>
+
+    </div>
+
+</section>
+
+<section class="features">
+
+    <div class="feature">
+        <h2>🛡️ Secure & Safe</h2>
+        <p>
+            Stores your profile and
+            shopping activity locally on your device.
+        </p>
+    </div>
+
+    <div class="feature">
+        <h2>⚡ Instant Experience</h2>
+        <p>
+            Browse products, add items to your cart and
+            explore the complete checkout.
+        </p>
+    </div>
+
+</section>
+
+</body>
+</html>

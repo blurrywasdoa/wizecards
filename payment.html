@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>WIZE CARDS - Payment</title>
+
+<style>
+*{box-sizing:border-box;font-family:Arial,sans-serif}
+
+body{
+    margin:0;
+    background:#08080d;
+    color:white;
+}
+
+.container{
+    max-width:650px;
+    margin:auto;
+    padding:30px 20px;
+}
+
+.box{
+    background:#111116;
+    border:1px solid #30293c;
+    border-radius:22px;
+    padding:30px;
+    margin-top:20px;
+}
+
+.total{
+    font-size:35px;
+    color:#945dff;
+    font-weight:bold;
+}
+
+select,input{
+    width:100%;
+    padding:16px;
+    background:#08080d;
+    border:1px solid #3a3344;
+    color:white;
+    border-radius:12px;
+    margin:8px 0 20px;
+}
+
+button{
+    width:100%;
+    padding:17px;
+    border:0;
+    border-radius:12px;
+    background:#7652ff;
+    color:white;
+    font-size:17px;
+}
+
+.notice{
+    padding:18px;
+    background:#101d36;
+    border:1px solid #234b83;
+    border-radius:14px;
+    margin-bottom:25px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<button onclick="history.back()">
+← Back
+</button>
+
+<h1>Payment Details</h1>
+
+<div class="box">
+
+<div class="notice">
+💳 Accepted payment methods:
+Mobile Money, Bitcoin (BTC), and USDT.
+</div>
+
+<h2>Total</h2>
+
+<div class="total">
+<span id="displayAmount"></span>
+</div>
+
+<label>Payment Method</label>
+
+<select id="method" onchange="changeCurrency()">
+<option value="BTC">Bitcoin (BTC)</option>
+<option value="USDT">USDT (TRC20)</option>
+<option value="MOMO">Mobile Money</option>
+</select>
+
+<label>Email Address</label>
+<input id="email" type="email">
+
+<label>Full Name</label>
+<input id="name">
+
+<label>Phone Number</label>
+<input id="phone">
+
+<button onclick="proceed()">
+Proceed to Payment
+</button>
+
+</div>
+
+</div>
+
+<script>
+
+const card =
+JSON.parse(localStorage.getItem("selectedCard"));
+
+const user =
+JSON.parse(localStorage.getItem("wezeUser"));
+
+if(!card){
+
+    location.href="cards.html";
+
+}
+
+if(user){
+
+    document.getElementById("email").value=user.email;
+    document.getElementById("name").value=user.name;
+    document.getElementById("phone").value=user.phone;
+
+}
+
+function changeCurrency(){
+
+    const method =
+    document.getElementById("method").value;
+
+    const amount=card.total || card.price*1.10;
+
+    if(method==="MOMO"){
+
+        const ghs =
+        amount*10.6;
+
+        document.getElementById(
+            "displayAmount"
+        ).textContent=
+        "GHS "+ghs.toFixed(2);
+
+    }else{
+
+        document.getElementById(
+            "displayAmount"
+        ).textContent=
+        "$"+amount.toFixed(2)+" USD";
+
+    }
+}
+
+function proceed(){
+
+    localStorage.setItem(
+        "paymentMethod",
+        document.getElementById("method").value
+    );
+
+    localStorage.setItem(
+        "paymentEmail",
+        document.getElementById("email").value
+    );
+
+    location.href="instructions.html";
+}
+
+changeCurrency();
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>WIZE CARDS - Cart</title>
+
+<style>
+*{box-sizing:border-box;font-family:Arial,sans-serif}
+
+body{
+    margin:0;
+    background:#08080d;
+    color:white;
+}
+
+.container{
+    max-width:700px;
+    margin:auto;
+    padding:35px 20px;
+}
+
+.item{
+    background:#111116;
+    border:1px solid #2d2738;
+    border-radius:18px;
+    padding:20px;
+    margin-bottom:15px;
+}
+
+button{
+    padding:14px 20px;
+    border:0;
+    border-radius:10px;
+    background:#16d8ee;
+    color:white;
+    cursor:pointer;
+}
+
+.remove{
+    background:#5a2025;
+    float:right;
+}
+
+.total{
+    font-size:28px;
+    color:#935cff;
+    margin:25px 0;
+}
+
+.empty{
+    text-align:center;
+    color:#888;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<button onclick="location.href='cards.html'">
+← Continue Shopping
+</button>
+
+<h1>🛒 Your Cart</h1>
+
+<div id="cart"></div>
+
+<div class="total">
+Total: $<span id="total">0</span>
+</div>
+
+<button onclick="checkout()">
+Checkout
+</button>
+
+</div>
+
+<script>
+
+let cart =
+JSON.parse(localStorage.getItem("wizeCart")) || [];
+
+function render(){
+
+    const box =
+    document.getElementById("cart");
+
+    box.innerHTML="";
+
+    if(cart.length===0){
+
+        box.innerHTML=
+        "<p class='empty'>Your cart is empty.</p>";
+
+        document.getElementById("total").textContent="0";
+
+        return;
+    }
+
+    let total=0;
+
+    cart.forEach((item,index)=>{
+
+        total+=item.price;
+
+        box.innerHTML+=`
+
+        <div class="item">
+
+        <button class="remove"
+        onclick="removeItem(${index})">
+        Remove
+        </button>
+
+        <h3>${item.name}</h3>
+
+        <p>Card #${item.id}</p>
+
+        <strong>$${item.price}.00 USD</strong>
+
+        </div>
+
+        `;
+
+    });
+
+    document.getElementById("total").textContent =
+    total.toFixed(2);
+
+}
+
+function removeItem(index){
+
+    cart.splice(index,1);
+
+    localStorage.setItem(
+        "wizeCart",
+        JSON.stringify(cart)
+    );
+
+    render();
+}
+
+function checkout(){
+
+    if(cart.length===0){
+
+        alert("Your cart is empty.");
+
+        return;
+    }
+
+    localStorage.setItem(
+        "selectedCard",
+        JSON.stringify(cart[0])
+    );
+
+    location.href="detail.html";
+}
+
+render();
+
+</script>
+
+</body>
+</html>

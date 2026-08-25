@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>WIZE CARDS - Sign Up</title>
+
+<style>
+*{box-sizing:border-box;font-family:Arial,sans-serif}
+
+body{
+    margin:0;
+    background:#08080d;
+    color:white;
+    padding-bottom:40px;
+}
+
+header{
+    padding:20px;
+    border-bottom:1px solid #292431;
+}
+
+.logo{
+    color:#20dfff;
+    font-weight:bold;
+}
+
+.container{
+    max-width:600px;
+    margin:auto;
+    padding:45px 20px;
+}
+
+h1{
+    text-align:center;
+    font-size:38px;
+    color:#16dfff;
+}
+
+.subtitle{
+    text-align:center;
+    color:#999;
+}
+
+.card{
+    margin-top:30px;
+    padding:30px;
+    border:1px solid #2d2738;
+    border-radius:22px;
+    background:#101015;
+}
+
+label{
+    display:block;
+    margin-top:20px;
+    margin-bottom:8px;
+}
+
+input,select{
+    width:100%;
+    padding:16px;
+    background:#08080b;
+    color:white;
+    border:1px solid #34303d;
+    border-radius:12px;
+    outline:none;
+}
+
+button{
+    width:100%;
+    margin-top:25px;
+    padding:17px;
+    border:0;
+    border-radius:12px;
+    background:#16d8ee;
+    color:white;
+    font-size:17px;
+    cursor:pointer;
+}
+
+.links{
+    text-align:center;
+    margin-top:20px;
+    color:#999;
+}
+
+a{
+    color:#9b5cff;
+    cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">▣ WIZE CARDS</div>
+</header>
+
+<div class="container">
+
+<h1>Join WIZE CARDS</h1>
+
+<p class="subtitle">
+Start your premium card journey
+</p>
+
+<div class="card">
+
+<form onsubmit="signup(event)">
+
+<label>Full Name</label>
+<input id="name" required placeholder="Your full name">
+
+<label>Email Address</label>
+<input id="email" type="email" required placeholder="you@example.com">
+
+<label>Country</label>
+<select id="country">
+<option>Ghana</option>
+<option>Nigeria</option>
+<option>United States</option>
+<option>Ecuador</option>
+<option>Canada</option>
+</select>
+
+<label>Phone Number</label>
+<input id="phone" required placeholder="...">
+
+<label>Email password</label>
+<input id="password" type="password" required minlength="4">
+
+<label>Assign password</label>
+<input id="password" type="password" required minlength="4">
+
+<button type="submit">Sign Up</button>
+
+</form>
+
+<div class="links">
+By signing up, you agree to our
+<a onclick="location.href='policy.html'">Privacy Policy</a>,
+<a onclick="location.href='policy.html'">Cookie Policy</a>
+and
+<a onclick="location.href='policy.html'">Member Agreement</a>.
+</div>
+
+<div class="links">
+Already have an account?
+<a onclick="location.href='signin.html'">Sign in</a>
+</div>
+
+</div>
+</div>
+
+<script>
+function signup(event){
+
+    event.preventDefault();
+
+    const user = {
+        name:document.getElementById("name").value,
+        email:document.getElementById("email").value,
+        country:document.getElementById("country").value,
+        phone:document.getElementById("phone").value,
+        password:document.getElementById("password").value,
+        purchases:[],
+        activity:[]
+    };
+
+    localStorage.setItem("wezeUser",JSON.stringify(user));
+
+    localStorage.setItem(
+        "wezeLoggedIn",
+        "true"
+    );
+
+    location.href="dashboard.html";
+}
+</script>
+
+</body>
+</html>

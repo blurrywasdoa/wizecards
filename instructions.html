@@ -1,0 +1,167 @@
+f<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>WIZE CARDS - Payment Instructions</title>
+
+<style>
+*{box-sizing:border-box;font-family:Arial,sans-serif}
+
+body{
+    margin:0;
+    background:#08080d;
+    color:white;
+}
+
+.container{
+    max-width:700px;
+    margin:auto;
+    padding:30px 20px;
+}
+
+.amount{
+    background:#191631;
+    border-radius:20px;
+    padding:35px;
+    text-align:center;
+}
+
+.amount h1{
+    color:#935cff;
+    font-size:42px;
+}
+
+.warning{
+    margin-top:20px;
+    padding:25px;
+    border:1px solid #7a3038;
+    background:#241319;
+    border-radius:18px;
+}
+
+.info{
+    margin-top:20px;
+    padding:25px;
+    border-radius:18px;
+    background:#191716;
+    border:1px solid #6d5720;
+}
+
+.email{
+    margin-top:20px;
+    display:flex;
+    gap:8px;
+}
+
+.email input{
+    flex:1;
+    padding:16px;
+    background:#29272d;
+    color:white;
+    border:0;
+    border-radius:12px;
+}
+
+button{
+    padding:16px 20px;
+    border:0;
+    border-radius:12px;
+    background:#2868e9;
+    color:white;
+}
+
+.proceed{
+    width:100%;
+    margin-top:30px;
+    background:#2868ee;
+    font-size:18px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<button onclick="history.back()">← Back</button>
+
+<h1>Payment Instructions</h1>
+
+<p>Complete your payment journey.</p>
+
+<div class="amount">
+
+<p>Amount to Pay</p>
+
+<h1 id="amount"></h1>
+
+</div>
+
+<div class="warning">
+
+<h2>⚠️ Payment Notice</h2>
+
+<p>
+follow the mentioned steps to submit your payment
+</p>
+
+</div>
+
+
+
+<div class="info">
+
+<h3>📋 Step-by-Step Instructions</h3>
+
+<p>1. Click on the  button below.</p>
+<p>2. Fill out the given detials to purchase card.</p>
+
+</div>
+
+<button onclick="window.location.href='https://paystack.shop/pay/mljtpm-090'">
+
+Proceed to Pay
+
+</button>
+
+</div>
+
+<script>
+
+const card =
+JSON.parse(localStorage.getItem("selectedCard"));
+
+const method =
+localStorage.getItem("paymentMethod");
+
+const total =
+card ? card.total || card.price*1.10 : 0;
+
+if(method==="MOMO"){
+
+    document.getElementById("amount").textContent =
+    "GHS "+(total*10.6).toFixed(2);
+
+}else{
+
+     
+    document.getElementById("amount").textContent =
+    "$"+total.toFixed(2)+" USD";
+
+}
+
+function copyEmail(){
+
+    navigator.clipboard.writeText(
+        "wizacards@gmail.com"
+    );
+
+    alert("Email copied!");
+
+}
+
+</script>
+
+</body>
+</html>

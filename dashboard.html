@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>WIZE CARDS - Dashboard</title>
+
+<style>
+*{box-sizing:border-box;font-family:Arial,sans-serif}
+
+body{
+    margin:0;
+    background:#08080d;
+    color:white;
+}
+
+nav{
+    height:70px;
+    border-bottom:1px solid #292430;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 20px;
+}
+
+.logo{color:#18dfff;font-weight:bold}
+
+.user{
+    background:#22202b;
+    padding:12px 18px;
+    border-radius:15px;
+}
+
+.container{
+    max-width:900px;
+    margin:auto;
+    padding:45px 20px;
+}
+
+.hero{
+    min-height:450px;
+    border-radius:25px;
+    padding:45px;
+    background:
+    linear-gradient(135deg,#15102e,#07121c);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+}
+
+h1{
+    font-size:42px;
+}
+
+h1 span{
+    color:#19dcff;
+}
+
+p{
+    color:#aaa;
+    font-size:18px;
+}
+
+button{
+    margin-top:25px;
+    padding:17px 35px;
+    border:0;
+    border-radius:12px;
+    background:#7850ff;
+    color:white;
+    font-size:17px;
+}
+
+.bottom{
+    position:fixed;
+    bottom:0;
+    left:0;
+    right:0;
+    background:#111116;
+    display:flex;
+    justify-content:space-around;
+    padding:15px;
+    border-top:1px solid #292430;
+}
+
+.bottom button{
+    margin:0;
+    padding:10px;
+    background:none;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+
+<div class="logo">▣ WIZE CARDS</div>
+
+<div class="user" id="username">
+    User
+</div>
+
+</nav>
+
+<div class="container">
+
+<div class="hero">
+
+<h1>
+Welcome to <span>WIZE CARDS</span>
+</h1>
+
+<p>
+Secure & Fast Digital Card Marketplace
+</p>
+
+<button onclick="location.href='cards.html'">
+Browse Cards
+</button>
+
+<button onclick="location.href='support.html'">
+Help & Support
+</button>
+
+</div>
+
+</div>
+
+<div class="bottom">
+
+<button onclick="location.href='about.html'">⌂<br>Home</button>
+
+<button onclick="location.href='cards.html'">▣<br>Cards</button>
+
+<button onclick="location.href='cart.html'">🛒<br>Cart</button>
+
+
+</div>
+
+<script>
+const user =
+JSON.parse(localStorage.getItem("wezeUser"));
+
+if(user){
+
+    document.getElementById("username").textContent =
+    user.name;
+
+}
+</script>
+
+</body>
+</html>

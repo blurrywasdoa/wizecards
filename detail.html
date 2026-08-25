@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>WIZE CARDS - Card Details</title>
+
+<style>
+*{box-sizing:border-box;font-family:Arial,sans-serif}
+
+body{
+    margin:0;
+    background:#08080d;
+    color:white;
+    padding:20px;
+}
+
+.container{
+    max-width:650px;
+    margin:40px auto;
+}
+
+.box{
+    background:#111116;
+    border:1px solid #30293c;
+    border-radius:22px;
+    padding:30px;
+}
+
+.badge{
+    color:#9c63ff;
+    background:#211735;
+    display:inline-block;
+    padding:10px 15px;
+    border-radius:20px;
+}
+
+h1{
+    font-size:35px;
+}
+
+.stars{
+    color:#ffd329;
+    font-size:22px;
+}
+
+.info{
+    background:#25232b;
+    padding:17px;
+    border-radius:13px;
+    margin-top:12px;
+}
+
+.total{
+    font-size:27px;
+    color:#935cff;
+    font-weight:bold;
+}
+
+button{
+    width:100%;
+    padding:17px;
+    margin-top:15px;
+    border:0;
+    border-radius:12px;
+    background:#ff6815;
+    color:white;
+    font-size:17px;
+}
+
+.back{
+    background:#211e29;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<button class="back" onclick="history.back()">← Back</button>
+
+<div class="box">
+
+<div class="badge">
+⚡ Fast delivery
+</div>
+
+<h1 id="name">Card</h1>
+
+<div class="stars">★★★★★</div>
+
+<div class="info">
+<b>Card Type</b>
+<br>
+Mastercard
+</div>
+
+<div class="info">
+<b>Card Limit</b>
+<br>
+$<span id="limit"></span>
+</div>
+
+<div class="info">
+<b>Country</b>
+<br>
+United States
+</div>
+
+<div class="info">
+<b>Price</b>
+<br>
+$<span id="price"></span>
+<br><br>
+10% Tax
+<br>
+<strong class="total">
+$<span id="total"></span> USD Total
+</strong>
+</div>
+
+<button onclick="pay()">
+Pay $<span id="buttonTotal"></span> (incl. tax)
+</button>
+
+</div>
+</div>
+
+<script>
+
+const card =
+JSON.parse(localStorage.getItem("selectedCard"));
+
+if(!card){
+
+    location.href="cards.html";
+
+}else{
+
+    const total =
+    card.price * 1.10;
+
+    document.getElementById("name").textContent =
+    card.name;
+
+    document.getElementById("limit").textContent =
+    card.limit.toLocaleString();
+
+    document.getElementById("price").textContent =
+    card.price.toFixed(2);
+
+    document.getElementById("total").textContent =
+    total.toFixed(2);
+
+    document.getElementById("buttonTotal").textContent =
+    total.toFixed(2);
+
+}
+
+function pay(){
+
+    const card =
+    JSON.parse(localStorage.getItem("selectedCard"));
+
+    card.total =
+    card.price * 1.10;
+
+    localStorage.setItem(
+        "selectedCard",
+        JSON.stringify(card)
+    );
+
+    location.href="payment.html";
+}
+
+</script>
+
+</body>
+</html>

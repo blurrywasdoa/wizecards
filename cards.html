@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>WIZE CARDS - Marketplace</title>
+
+<style>
+*{box-sizing:border-box;font-family:Arial,sans-serif}
+
+body{
+    margin:0;
+    background:#08080d;
+    color:white;
+    padding-bottom:80px;
+}
+
+header{
+    padding:20px;
+    display:flex;
+    justify-content:space-between;
+    border-bottom:1px solid #292430;
+}
+
+.logo{
+    color:#1ce0ff;
+    font-weight:bold;
+}
+
+.container{
+    max-width:1100px;
+    margin:auto;
+    padding:35px 20px;
+}
+
+h1{
+    text-align:center;
+    font-size:40px;
+}
+
+.subtitle{
+    text-align:center;
+    color:#999;
+}
+
+.search{
+    width:100%;
+    padding:17px;
+    margin:25px 0;
+    background:#111116;
+    border:1px solid #302b39;
+    border-radius:14px;
+    color:white;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:18px;
+}
+
+.card{
+    background:#111116;
+    border:1px solid #292533;
+    border-radius:20px;
+    padding:18px;
+}
+
+.card-img{
+    height:130px;
+    border-radius:14px;
+    background:linear-gradient(135deg,#173b78,#168bce);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:24px;
+    font-weight:bold;
+}
+
+.card:nth-child(3n) .card-img{
+    background:linear-gradient(135deg,#222,#777);
+}
+
+.card:nth-child(4n) .card-img{
+    background:linear-gradient(135deg,#111,#9c9c9c);
+}
+
+.rating{
+    color:#ffd52e;
+    margin:10px 0;
+}
+
+.price{
+    font-size:22px;
+    font-weight:bold;
+    color:#fff;
+}
+
+button{
+    width:100%;
+    padding:13px;
+    margin-top:10px;
+    border-radius:11px;
+    border:0;
+    background:#17d9ed;
+    color:white;
+}
+
+.add{
+    background:#17151c;
+    border:1px solid #3a3347;
+}
+
+.back{
+    width:auto;
+    padding:12px 20px;
+    background:#15131a;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">▣ WIZE CARDS</div>
+
+<button class="back" onclick="location.href='dashboard.html'">
+← Back
+</button>
+
+</header>
+
+<div class="container">
+
+<h1>Premium Cards</h1>
+
+<p class="subtitle">
+Discover our curated collection of digital cards
+</p>
+
+<input
+class="search"
+id="search"
+placeholder="🔍 Search cards..."
+oninput="renderCards()">
+
+<div class="grid" id="grid"></div>
+
+</div>
+
+<script>
+
+const cards=[];
+
+for(let i=1;i<=80;i++){
+
+    cards.push({
+
+        id:i,
+
+        name:
+        [
+            "Chase Sapphire Preferred",
+            "American Express Platinum",
+            "Capital One Venture",
+            "U.S. Bank Premium",
+            "WIZE Rewards Card"
+        ][(i-1)%5],
+
+        price:
+        20 + (i%10)*7,
+
+        limit:
+        800 + Math.floor(Math.random()*9200),
+
+        rating:
+        (4+(i%10)/10).toFixed(1)
+
+    });
+
+}
+
+function renderCards(){
+
+    const search =
+    document.getElementById("search").value.toLowerCase();
+
+    const grid =
+    document.getElementById("grid");
+
+    grid.innerHTML="";
+
+    cards
+    .filter(c=>c.name.toLowerCase().includes(search))
+    .forEach(c=>{
+
+        grid.innerHTML += `
+
+        <div class="card">
+
+            <div class="card-img">
+                WIZE ${c.id}
+            </div>
+
+            <h3>${c.name}</h3>
+
+            <div class="rating">
+                ⭐⭐⭐⭐⭐ ${c.rating}
+            </div>
+
+            <div class="price">
+                $${c.price}.00 USD
+            </div>
+
+            <button class="add"
+                onclick="addCart(${c.id})">
+                🛒 Add
+            </button>
+
+            <button
+                onclick="buy(${c.id})">
+                Buy Now
+            </button>
+
+        </div>
+
+        `;
+
+    });
+
+}
+
+function addCart(id){
+
+    let cart =
+    JSON.parse(localStorage.getItem("wizeCart")) || [];
+
+    const card=cards.find(c=>c.id===id);
+
+    cart.push(card);
+
+    localStorage.setItem(
+        "wizeCart",
+        JSON.stringify(cart)
+    );
+
+    alert("Card added to cart!");
+
+}
+
+function buy(id){
+
+    const card=cards.find(c=>c.id===id);
+
+    localStorage.setItem(
+        "selectedCard",
+        JSON.stringify(card)
+    );
+
+    location.href="detail.html";
+}
+
+renderCards();
+
+</script>
+
+</body>
+</html>

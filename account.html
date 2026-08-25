@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>WIZE CARDS - Success</title>
+
+<style>
+body{
+    margin:0;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#08080d;
+    color:white;
+    font-family:Arial,sans-serif;
+    padding:20px;
+}
+
+.box{
+    max-width:550px;
+    width:100%;
+    text-align:center;
+    padding:45px;
+    background:#111116;
+    border:1px solid #30293c;
+    border-radius:25px;
+}
+
+.check{
+    font-size:70px;
+}
+
+h1{
+    color:#20dfff;
+}
+
+button{
+    width:100%;
+    padding:17px;
+    margin-top:15px;
+    border:0;
+    border-radius:12px;
+    background:#7650ff;
+    color:white;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+
+<div class="check">✓</div>
+
+<h1> Payment Complete</h1>
+
+<p>
+Your order has been recorded.
+</p>
+
+<button onclick="savePurchase()">
+View Account
+</button>
+
+<button onclick="location.href='cards.html'">
+Continue Shopping
+</button>
+
+</div>
+
+<script>
+
+function savePurchase(){
+
+    const card =
+    JSON.parse(localStorage.getItem("selectedCard"));
+
+    let user =
+    JSON.parse(localStorage.getItem("wezeUser"));
+
+    if(user && card){
+
+        user.purchases =
+        user.purchases || [];
+
+        user.activity =
+        user.activity || [];
+
+        user.purchases.push(card);
+
+        user.activity.push({
+            action:"Purchased "+card.name,
+            date:new Date().toLocaleString()
+        });
+
+        localStorage.setItem(
+            "wezeUser",
+            JSON.stringify(user)
+        );
+
+    }
+
+    location.href="account.html";
+}
+
+</script>
+
+</body>
+</html>
